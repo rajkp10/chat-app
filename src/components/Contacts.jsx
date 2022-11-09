@@ -10,7 +10,7 @@ function Contacts() {
         return (
           <div
             className="group mx-2 p-2 flex items-center gap-4 cursor-pointer hover:bg-primary hover:rounded-lg"
-            onClick={() => navigate("/contacts/chatwindow")}
+            onClick={() => navigate("/chatwindow")}
           >
             <div className="avatar">
               <div className="w-14 mask mask-squircle">

@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
 function ChatWindowHeader() {
   const navigate = useNavigate();
 
+  const { currentUser } = useAuthContext();
+
   return (
     <div className="h-[10%] w-full px-4 flex justify-between items-center bg-secondary drop-shadow">
-      <div
-        className="absolute cursor-pointer"
-        onClick={() => navigate("/contacts")}
-      >
+      <div className="absolute cursor-pointer" onClick={() => navigate("/")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -28,10 +28,10 @@ function ChatWindowHeader() {
       <div className="w-full flex justify-center items-center gap-2">
         <div className="avatar">
           <div className="w-8 mask mask-squircle">
-            <img src="https://placeimg.com/192/192/people" />
+            <img src={currentUser.photoURL} />
           </div>
         </div>
-        <span className="text-lg text-white">John Doe</span>
+        <span className="text-lg text-white">{currentUser.displayName}</span>
       </div>
     </div>
   );
