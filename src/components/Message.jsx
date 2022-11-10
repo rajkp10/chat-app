@@ -1,25 +1,35 @@
 import React from "react";
+import { useAuthContext } from "../context/AuthContext";
 
-function Message({ owner }) {
-  // const owner = true;
+function Message({ message }) {
+  const { currentUser } = useAuthContext();
+
   return (
     <div
-      className={`w-full ${owner && "self-end"} flex flex-col ${
-        owner && "items-end"
+      className={`w-full ${
+        message.senderId === currentUser.uid && "self-end"
+      } flex flex-col ${
+        message.senderId === currentUser.uid && "items-end"
       } gap-2`}
     >
-      <p
-        className={`p-2 w-[80%] max-w-fit text-white ${
-          owner ? "bg-secondary" : "bg-tertiary"
-        } rounded-lg ${owner ? "rounded-tr-none" : "rounded-tl-none"}`}
-      >
-        Hello how are you ?
-      </p>
-      <img
-        src="https://images.pexels.com/photos/7478159/pexels-photo-7478159.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-        alt=""
-        className="w-[50%]"
-      />
+      {message.text && (
+        <p
+          className={`p-2 w-[80%] max-w-fit text-white ${
+            message.senderId === currentUser.uid
+              ? "bg-secondary"
+              : "bg-tertiary"
+          } rounded-lg ${
+            message.senderId === currentUser.uid
+              ? "rounded-tr-none"
+              : "rounded-tl-none"
+          } shadow`}
+        >
+          {message.text}
+        </p>
+      )}
+      {message.img && (
+        <img src={message.img} alt="" className="w-[50%] shadow" />
+      )}
     </div>
   );
 }
