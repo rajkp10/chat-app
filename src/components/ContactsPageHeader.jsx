@@ -16,11 +16,11 @@ function ContactsPageHeader() {
   };
 
   return (
-    <section className="h-[10%] w-full sticky px-4 flex justify-between items-center bg-primary drop-shadow">
+    <section className="h-[75px] w-full sticky px-4 flex justify-between items-center bg-primary drop-shadow">
       <span className="text-xl text-white font-bold">Chattier</span>
-      <div className="flex justify-center items-center gap-4 visible">
+      <div className="flex justify-center items-center gap-4">
         <div className="flex items-center gap-2">
-          <div className="avatar">
+          <div className="avatar hover:scale-125 hover:-translate-y-1 transition duration-300">
             <div className="w-8 mask mask-squircle">
               <img src={photoURL} />
             </div>
@@ -28,7 +28,7 @@ function ContactsPageHeader() {
           <span className="text-white">{displayName}</span>
         </div>
         <button
-          className="btn btn-sm border-none bg-tertiary text-white hover:bg-secondary"
+          className="btn btn-sm border-none bg-tertiary text-white hover:bg-secondary transition duration-300"
           onClick={handleLogout}
         >
           Logout

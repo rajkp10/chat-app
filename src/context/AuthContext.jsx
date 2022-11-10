@@ -9,8 +9,6 @@ const AuthProvider = ({ children }) => {
   const checkUser = () => {
     onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      console.log(currentUser);
-      console.log(user);
     });
   };
   useEffect(() => {

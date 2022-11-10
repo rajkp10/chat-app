@@ -8,7 +8,7 @@ function ChatWindowHeader() {
   const { currentUser } = useAuthContext();
 
   return (
-    <div className="h-[10%] w-full px-4 flex justify-between items-center bg-secondary drop-shadow">
+    <div className="h-[10%] w-full px-4 flex justify-between items-center bg-primary drop-shadow">
       <div className="absolute cursor-pointer" onClick={() => navigate("/")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

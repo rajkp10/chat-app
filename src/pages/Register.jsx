@@ -52,7 +52,7 @@ function Register() {
 
   useEffect(() => {
     if (currentUser) {
-      navigate(-2);
+      setTimeout(() => navigate(-2), 2000);
     }
   }, []);
 

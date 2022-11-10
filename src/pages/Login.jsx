@@ -23,7 +23,7 @@ function Login() {
 
   useEffect(() => {
     if (currentUser) {
-      navigate(-1);
+      setTimeout(() => navigate(-1), 2000);
     }
   }, []);
 

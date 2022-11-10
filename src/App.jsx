@@ -13,7 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ProtectedRoutes />}>
               <Route index element={<ContactsPage />} />
-              <Route path="chatwindow" element={<ChatWindow />} />
+              <Route path="contacts/:id" element={<ChatWindow />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
