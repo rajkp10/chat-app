@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useAuthContext } from "../context/AuthContext";
 
 function Message({ message }) {
   const { currentUser } = useAuthContext();
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({
+      behaviour: "smooth",
+    });
+  }, [message]);
 
   return (
     <div
