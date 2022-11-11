@@ -20,10 +20,22 @@ function MessageInput() {
   const { contact } = useChatContext();
   const { contactInfo } = contact;
 
+  const acceptedImageTypes = [
+    "image/gif",
+    "image/jpg",
+    "image/jpeg",
+    "image/png",
+  ];
+
   const handleSend = async () => {
     try {
       if (img) {
-        console.log("hello");
+        if (img.size > 307200) {
+          return;
+        }
+        if (!acceptedImageTypes.includes(img.type)) {
+          return;
+        }
         const storageRef = ref(storage, "sharedImg/" + uuid());
 
         const uploadTask = uploadBytesResumable(storageRef, img);

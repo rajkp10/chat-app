@@ -17,7 +17,9 @@ function ContactsPageHeader() {
 
   return (
     <section className="h-[75px] w-full sticky px-4 flex justify-between items-center bg-primary drop-shadow">
-      <span className="text-xl text-white font-bold">Chattier</span>
+      <span className="text-xl text-white font-bold tracking-wider">
+        Chattier
+      </span>
       <div className="flex justify-center items-center gap-4">
         <div className="flex items-center gap-2">
           <div className="avatar hover:scale-125 hover:-translate-y-1 transition duration-300">

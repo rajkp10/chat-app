@@ -4,12 +4,23 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { useChatContext } from "../context/ChatContext";
 import { db } from "../firebase/firebaseConfig";
+import { motion } from "framer-motion";
+
+const item = {
+  hidden: { opacity: 0, x: -100 },
+  visible: (custom) => ({
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", duration: 0.5, delay: custom * 0.5 },
+  }),
+};
 
 function Contacts() {
   const [contacts, setContacts] = useState([]);
   const { currentUser } = useAuthContext();
   const { dispatch } = useChatContext();
   const navigate = useNavigate();
+  var i = 1;
 
   const handleClick = (userInfo) => {
     dispatch({ type: "CHANGE_CONTACT", payload: userInfo });
@@ -29,7 +40,7 @@ function Contacts() {
   }, [currentUser.uid]);
 
   return (
-    <section className="w-full pt-1 grid sm:grid-cols-2 overflow-y-auto">
+    <ul className="w-full pt-1 grid sm:grid-cols-2 overflow-y-auto">
       {Object.entries(contacts)
         .sort((a, b) => b[1].date - a[1].date)
         .map((contact) => {
@@ -37,10 +48,14 @@ function Contacts() {
           const { displayName, photoURL } = userInfo;
 
           return (
-            <div
+            <motion.li
               key={contact[0]}
               className="group mx-2 p-2 flex items-center gap-4 cursor-pointer rounded-lg hover:-translate-y-1 hover:bg-primary transition duration-300"
               onClick={() => handleClick(userInfo)}
+              custom={i++}
+              variants={item}
+              initial="hidden"
+              animate="visible"
             >
               <div className="avatar">
                 <div className="w-14 mask mask-squircle">
@@ -55,10 +70,10 @@ function Contacts() {
                   {lastMessage}
                 </p>
               </div>
-            </div>
+            </motion.li>
           );
         })}
-    </section>
+    </ul>
   );
 }
 

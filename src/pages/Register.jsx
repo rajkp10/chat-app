@@ -9,6 +9,12 @@ import { useAuthContext } from "../context/AuthContext";
 function Register() {
   const { currentUser } = useAuthContext();
   const navigate = useNavigate();
+  const acceptedImageTypes = [
+    "image/gif",
+    "image/jpg",
+    "image/jpeg",
+    "image/png",
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +22,19 @@ function Register() {
     const email = e.target[1].value;
     const password = e.target[2].value;
     const avatar = e.target[3].files[0];
+
+    if (avatar.size > 307200) {
+      return;
+    }
+    if (
+      !displayName ||
+      !email ||
+      !password ||
+      !avatar ||
+      !acceptedImageTypes.includes(avatar.type)
+    ) {
+      return;
+    }
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -52,7 +71,7 @@ function Register() {
 
   useEffect(() => {
     if (currentUser) {
-      setTimeout(() => navigate(-2), 2000);
+      setTimeout(() => navigate("/"), 1500);
     }
   }, []);
 

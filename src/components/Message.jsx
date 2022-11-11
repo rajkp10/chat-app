@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useAuthContext } from "../context/AuthContext";
+import { motion } from "framer-motion";
 
 function Message({ message }) {
   const { currentUser } = useAuthContext();
@@ -12,12 +13,18 @@ function Message({ message }) {
   }, [message]);
 
   return (
-    <div
+    <motion.div
       className={`w-full ${
         message.senderId === currentUser.uid && "self-end"
       } flex flex-col ${
         message.senderId === currentUser.uid && "items-end"
       } gap-2`}
+      initial={{
+        opacity: 0,
+        x: message.senderId === currentUser.uid ? 100 : -100,
+      }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
     >
       {message.text && (
         <p
@@ -37,7 +44,7 @@ function Message({ message }) {
       {message.img && (
         <img src={message.img} alt="" className="w-[50%] shadow" />
       )}
-    </div>
+    </motion.div>
   );
 }
 

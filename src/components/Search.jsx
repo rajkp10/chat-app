@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { useAuthContext } from "../context/AuthContext";
+import { motion } from "framer-motion";
 
 function Search() {
   const [displayName, setDisplayName] = useState("");
@@ -88,9 +89,11 @@ function Search() {
         onKeyDown={handleKeyDown}
       />
       {contact && (
-        <div
+        <motion.div
           className="group p-2 flex items-center gap-4 cursor-pointer rounded-lg hover:bg-primary hover:-translate-y-1 hover:animate-none animate-pulse tranisiton duration-300"
           onClick={handleClick}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
         >
           <div className="avatar">
             <div className="w-14 mask mask-squircle">
@@ -101,11 +104,8 @@ function Search() {
             <span className="text-lg text-primary font-semibold group-hover:text-white">
               {contact.displayName}
             </span>
-            <p className="text-sm text-gray-400 group-hover:text-slate-300">
-              Hello how are you ?
-            </p>
           </div>
-        </div>
+        </motion.div>
       )}
     </section>
   );
