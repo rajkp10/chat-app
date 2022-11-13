@@ -11,6 +11,7 @@ import { useChatContext } from "../context/ChatContext";
 import { db, storage } from "../firebase/firebaseConfig";
 import { v4 as uuid } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { motion } from "framer-motion";
 
 function MessageInput() {
   const [text, setText] = useState("");
@@ -89,7 +90,11 @@ function MessageInput() {
   };
 
   return (
-    <div className="h-[10%] px-4 bg-white flex p-2">
+    <motion.div
+      initial={{ y: 100 }}
+      animate={{ y: 0 }}
+      className="h-[10%] px-4 bg-white flex p-2"
+    >
       <input
         type="text"
         placeholder="Type here..."
@@ -127,7 +132,7 @@ function MessageInput() {
           send
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

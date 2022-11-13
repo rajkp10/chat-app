@@ -5,6 +5,8 @@ import { auth, db, storage } from "../firebase/firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useAuthContext } from "../context/AuthContext";
+import { motion } from "framer-motion";
+import { transition } from "../pages/pageTransitions";
 
 function Register() {
   const { currentUser } = useAuthContext();
@@ -76,7 +78,13 @@ function Register() {
   }, []);
 
   return (
-    <div className="h-full w-full grid place-content-center bg-white">
+    <motion.div
+      variants={transition}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      className="h-full w-full grid place-content-center bg-white"
+    >
       <div className="flex flex-col h-full w-full max-w-xl items-center gap-4">
         <span className="text-3xl text-primary font-bold tracking-widest">
           Chattier
@@ -116,7 +124,7 @@ function Register() {
           </Link>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

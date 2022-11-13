@@ -79,7 +79,11 @@ function Search() {
   };
 
   return (
-    <section className="mx-2 sticky flex flex-col gap-4 border-b-2 border-b-secondary">
+    <motion.section
+      className="mx-2 sticky flex flex-col gap-4 border-b-2 border-b-secondary"
+      initial={{ opacity: 0, y: -4 }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
+    >
       <input
         type="text"
         placeholder="Search Contact..."
@@ -90,10 +94,11 @@ function Search() {
       />
       {contact && (
         <motion.div
-          className="group p-2 flex items-center gap-4 cursor-pointer rounded-lg hover:bg-primary hover:-translate-y-1 hover:animate-none animate-pulse tranisiton duration-300"
+          className="group p-2 mb-2 flex items-center gap-4 cursor-pointer rounded-lg hover:bg-primary hover:-translate-y-1 hover:animate-none animate-pulse"
           onClick={handleClick}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileHover={{ y: -4 }}
         >
           <div className="avatar">
             <div className="w-14 mask mask-squircle">
@@ -107,7 +112,7 @@ function Search() {
           </div>
         </motion.div>
       )}
-    </section>
+    </motion.section>
   );
 }
 

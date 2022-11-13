@@ -7,12 +7,15 @@ import { db } from "../firebase/firebaseConfig";
 import { motion } from "framer-motion";
 
 const item = {
-  hidden: { opacity: 0, x: -100 },
+  hidden: { opacity: 0, y: -4 },
   visible: (custom) => ({
     opacity: 1,
-    x: 0,
-    transition: { type: "spring", duration: 0.5, delay: custom * 0.5 },
+    y: 0,
+    transition: { type: "linear", duration: 0.5, delay: custom * 0.5 },
   }),
+  hover: {
+    translateY: -4,
+  },
 };
 
 function Contacts() {
@@ -50,12 +53,13 @@ function Contacts() {
           return (
             <motion.li
               key={contact[0]}
-              className="group mx-2 p-2 flex items-center gap-4 cursor-pointer rounded-lg hover:-translate-y-1 hover:bg-primary transition duration-300"
+              className="group mx-2 p-2 flex items-center gap-4 cursor-pointer rounded-lg hover:bg-primary "
               onClick={() => handleClick(userInfo)}
               custom={i++}
               variants={item}
               initial="hidden"
               animate="visible"
+              whileHover="hover"
             >
               <div className="avatar">
                 <div className="w-14 mask mask-squircle">

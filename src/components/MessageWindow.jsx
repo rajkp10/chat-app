@@ -18,7 +18,7 @@ function MessageWindow() {
   }, [contact.chatId]);
 
   return (
-    <div className="h-[80%] w-full p-2 bg-window space-y-2 overflow-y-auto">
+    <div className="h-[80%] w-full p-2 bg-window space-y-2 overflow-y-auto overflow-x-hidden">
       {messages?.map((message) => {
         return <Message key={message.id} message={message} />;
       })}

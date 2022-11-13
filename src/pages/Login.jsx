@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { auth } from "../firebase/firebaseConfig";
+import { motion } from "framer-motion";
+import { transition } from "../pages/pageTransitions";
 
 function Login() {
   const { currentUser } = useAuthContext();
@@ -28,7 +30,13 @@ function Login() {
   }, []);
 
   return (
-    <div className="h-full w-full grid place-content-center bg-white">
+    <motion.div
+      variants={transition}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      className="h-full w-full grid place-content-center bg-white"
+    >
       <div className="flex flex-col h-full w-full max-w-xl items-center gap-4">
         <span className="text-3xl text-primary font-bold tracking-widest">
           Chattier
@@ -58,7 +66,7 @@ function Login() {
           </Link>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
