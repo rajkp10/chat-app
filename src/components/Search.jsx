@@ -80,21 +80,29 @@ function Search() {
 
   return (
     <motion.section
-      className="mx-2 sticky flex flex-col gap-4 border-b-2 border-b-secondary"
+      className="mx-2 sticky flex flex-col gap-2 border-b-2 border-b-secondary"
       initial={{ opacity: 0, y: -4 }}
       animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
     >
-      <input
-        type="text"
-        placeholder="Search Contact..."
-        className="w-full px-2 text-lg text-primary bg-transparent outline-none placeholder-slate-400"
-        value={displayName}
-        onChange={(e) => setDisplayName(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
+      <div className="w-full p-2 flex items-center">
+        <input
+          type="text"
+          placeholder="Search Contact..."
+          className="w-full text-lg text-primary bg-transparent outline-none placeholder-slate-400"
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <button
+          className="btn btn-sm btn-accent text-white"
+          onClick={handleSearch}
+        >
+          search
+        </button>
+      </div>
       {contact && (
         <motion.div
-          className="group p-2 mb-2 flex items-center gap-4 cursor-pointer rounded-lg hover:bg-primary hover:-translate-y-1 hover:animate-none animate-pulse"
+          className="group p-2 pt-1 mb-2 flex items-center gap-4 cursor-pointer rounded-lg hover:bg-primary hover:-translate-y-1 hover:animate-none animate-pulse"
           onClick={handleClick}
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
